@@ -11,10 +11,14 @@ add_executable(cmpfillin cmpfillin.c io.c smbfactor.c)
 
 # Link with the required libraries
 foreach(prog gpmetis ndmetis mpmetis m2gmetis graphchk cmpfillin)
-  target_link_libraries(${prog} metis GKlib m)
+  target_link_libraries(${prog} PRIVATE metis m)
+  if(DEFINED GKLIB_PATH)
+    target_link_libraries(${prog} PRIVATE GKlib)
+  endif()
 endforeach(prog)
 
 if(METIS_INSTALL)
+  include(GNUInstallDirs)
   install(TARGETS gpmetis ndmetis mpmetis m2gmetis graphchk cmpfillin
-    RUNTIME DESTINATION bin)
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif()

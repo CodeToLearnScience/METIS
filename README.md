@@ -12,6 +12,36 @@ You can download METIS by simply cloning it using the command:
 git clone https://github.com/KarypisLab/METIS.git
 ```
 
+## Using METIS in Your CMake Project
+
+**NEW:** METIS now supports CMake's FetchContent module, allowing you to use it directly in your project without manual installation!
+
+```cmake
+cmake_minimum_required(VERSION 3.14)
+project(MyProject)
+
+include(FetchContent)
+
+FetchContent_Declare(
+  METIS
+  GIT_REPOSITORY https://github.com/CodeToLearnScience/METIS.git
+  GIT_TAG        main
+)
+
+FetchContent_MakeAvailable(METIS)
+
+add_executable(my_app main.c)
+target_link_libraries(my_app PRIVATE METIS::metis)
+```
+
+**Benefits:**
+- No manual installation required
+- Automatic dependency management
+- Version control via Git tags
+- Cross-platform compatibility
+
+See [FETCHCONTENT.md](FETCHCONTENT.md) and [examples/](examples/) for detailed usage examples and documentation.
+
 ## Building standalone METIS binaries and library
 
 To build METIS you can follow the instructions below:
