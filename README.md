@@ -25,7 +25,7 @@ include(FetchContent)
 FetchContent_Declare(
   METIS
   GIT_REPOSITORY https://github.com/CodeToLearnScience/METIS.git
-  GIT_TAG        main
+  GIT_TAG        master
 )
 
 FetchContent_MakeAvailable(METIS)
